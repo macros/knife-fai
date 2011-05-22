@@ -24,17 +24,18 @@ class Chef
 
       deps do
         require 'knife-fai'
-        require 'chef/data_bag'
+        require 'chef/data_bag_item'
       end
 
       banner "knife fai edit [HOST] (options)"
 
       def run
-        item = Chef::DataBagItem.load('hosts', @name_args[0])
-        output = edit_item(item)
-        rest.put_rest("data/host/#{@name_args[1]}", output)
-        stdout.puts("Saved data_bag_item[#{@name_args[1]}]")
-        output(format_for_display(object.raw_data))
+        output = Chef::DataBagItem.load('hosts', @name_args[0])
+        host = edit_data(output.raw_data)
+        output.raw_data = host
+        rest.put_rest("data/hosts/#{@name_args[0]}", output)
+        stdout.puts("Saved data_bag_item[#{@name_args[0]}]")
+        output(format_for_display(output.raw_data))
       end
     end
   end
