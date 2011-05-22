@@ -13,7 +13,7 @@ Gem::Specification.new do |s|
   s.email = "jasonc@simpleideas.org"
   s.homepage = "http://wiki.opscode.com/display/chef"
 
-  s.add_dependency "chef", ">= 0.10"
+  s.add_dependency "chef", ">= 0.10.0"
   s.require_path = 'lib'
   s.files = %w(LICENSE README.rdoc) + Dir.glob("lib/**/*")
 end
