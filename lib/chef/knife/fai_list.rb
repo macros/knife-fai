@@ -24,6 +24,7 @@ class Chef
 
       deps do
         require 'knife-fai'
+        require 'chef/data_bag'
       end
 
       banner "knife fai list (options)"
@@ -36,7 +37,8 @@ class Chef
       attr_reader :subnet
 
       def run
-        
+        display = format_list_for_display(Chef::DataBag.load('hosts'))
+        output(display)
       end
     end
   end
