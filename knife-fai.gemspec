@@ -7,7 +7,7 @@ Gem::Specification.new do |s|
   s.platform = Gem::Platform::RUBY
   s.has_rdoc = true
   s.extra_rdoc_files = ["README.rdoc", "LICENSE" ]
-  s.summary = "EC2 Support for Chef's Knife Command"
+  s.summary = "FAI Support for Chef's Knife Command"
   s.description = s.summary
   s.author = "Jason Cook"
   s.email = "jasonc@simpleideas.org"
