@@ -29,12 +29,12 @@ class Chef
 
       banner "knife fai create [HOST] (options)"
 
-      option :ip,
+      option :fai_ip,
       :short => "-i IP",
       :long => "--ip IP",
       :description => "Host ip address"
 
-      option :mac,
+      option :fai_mac,
       :short => "-m MACADDR",
       :long => "--mac MACADDR",
       :description => "Host mac address"
@@ -52,6 +52,9 @@ class Chef
           create_object({ "id" => @data_bag_item_name }, "data_bag_item[#{@data_bag_item_name}]") do |output|
             item = Chef::DataBagItem.from_hash(output)
             item.data_bag('hosts')
+            item.raw_data[:class] = config[:fai_class]
+            item.raw_data[:mac] = config[:fai_mac]
+            item.raw_data[:ip] = config[:fai_ip]
             rest.post_rest("data/hosts", item)
           end
         end
