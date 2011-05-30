@@ -30,11 +30,12 @@ class Chef
       banner "knife fai edit [HOST] (options)"
 
       def run
-        output = Chef::DataBagItem.load('hosts', @name_args[0])
+        @data_bag_item = @name_args[0]
+        output = Chef::DataBagItem.load('hosts', @data_bag_item)
         host = edit_data(output.raw_data)
         output.raw_data = host
-        rest.put_rest("data/hosts/#{@name_args[0]}", output)
-        stdout.puts("Saved data_bag_item[#{@name_args[0]}]")
+        rest.put_rest("data/hosts/#{@data_bag_item}", output)
+        stdout.puts("Saved data_bag_item[#{@data_bag_item}]")
         output(format_for_display(output.raw_data))
       end
     end

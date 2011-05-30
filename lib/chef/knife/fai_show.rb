@@ -30,7 +30,8 @@ class Chef
       banner "knife fai show [HOST] (options)"
 
       def run
-        display = format_for_display(Chef::DataBagItem.load('hosts', @name_args[0]).raw_data)
+        @data_bag_item = @name_args[0]
+        display = format_for_display(Chef::DataBagItem.load('hosts', @data_bag_item).raw_data)
         output(display)
       end
     end

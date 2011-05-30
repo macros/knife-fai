@@ -30,8 +30,9 @@ class Chef
       banner "knife fai delete [HOST] (options)"
 
       def run
-        delete_object(Chef::DataBagItem, @name_args[0], "data_bag_item") do
-          rest.delete_rest("data/hosts/#{@name_args[0]}")
+        @data_bag_item = @name_args[0]
+        delete_object(Chef::DataBagItem, @data_bag_item, "data_bag_item") do
+          rest.delete_rest("data/hosts/#{@data_bag_item}")
         end
       end
     end
